@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
-class channel_messages(db.Model):
-    __tablename__ = 'channels_messages'
+class Channel_Message(db.Model):
+    __tablename__ = 'channel_messages'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -15,7 +15,7 @@ class channel_messages(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     # relationships
-    channel_owner = db.relationship("User", back_populates="user_channel")
+    channel_message_owner = db.relationship("User", back_populates="user_channel")
 
 
     def to_dict(self):
